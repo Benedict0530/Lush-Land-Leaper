@@ -1,7 +1,7 @@
 const config = {
     type: Phaser.AUTO,
-    width: 1600,
-    height: 600,
+    width: 2080,
+    height: 960,
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser-example',
@@ -87,7 +87,7 @@ function create() {
     
 
     // Display player HP text at the top left with a black shadow
-    playerHPText = this.add.text(80, 50, 'HP: 100', { fontSize: '32px', fill: '#fff' })
+    playerHPText = this.add.text(150, 100, 'HP: 100', { fontSize: '32px', fill: '#fff' })
      .setScrollFactor(0)
      .setShadow(2, 2, 'rgba(0,0,0,1)', 2); // Add black shadow
 
