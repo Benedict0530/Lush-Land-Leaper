@@ -179,20 +179,20 @@ function gameOver() {
     }
 
     // Display game over message and high score
-    const gameOverText = this.add.text(config.width / 2, config.height / 2 + 250, 'Game Over', { fontSize: '150px', fill: '#fff' })
+    const gameOverText = this.add.text(config.width / 2, config.height / 2 + 250, 'Game Over', { fontSize: '200px', fill: '#fff' })
         .setOrigin(0.5)
         .setShadow(2, 2, 'rgba(0,0,0,1)', 2);
 
-    const scoreText = this.add.text(config.width / 2, config.height / 2 + 100, 'Score: ' + playerScore, { fontSize: '50px', fill: '#fff' })
+    const scoreText = this.add.text(config.width / 2, config.height / 2 + 50, 'Score: ' + playerScore, { fontSize: '100px', fill: '#fff' })
         .setOrigin(0.5)
         .setShadow(2, 2, 'rgba(0,0,0,1)', 2);
 
-    const highScoreText = this.add.text(config.width / 2, config.height / 2 + 150, 'High Score: ' + highScore, { fontSize: '50px', fill: '#fff' })
+    const highScoreText = this.add.text(config.width / 2, config.height / 2 + 150, 'High Score: ' + highScore, { fontSize: '100px', fill: '#fff' })
         .setOrigin(0.5)
         .setShadow(2, 2, 'rgba(0,0,0,1)', 2);
 
     // Create a restart button
-    const restartButton = this.add.text(config.width / 2, config.height / 2 + 50, 'Restart', { fontSize: '32px', fill: '#fff', backgroundColor: '#66A242' })
+    const restartButton = this.add.text(config.width / 2, config.height / 2 -50, 'Restart', { fontSize: '64px', fill: '#fff', backgroundColor: '#66A242' })
         .setOrigin(0.5)
         .setInteractive()
         .setShadow(2, 2, 'rgba(0,0,0,1)', 2);
