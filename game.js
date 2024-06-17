@@ -179,7 +179,7 @@ function gameOver() {
     }
 
     // Display game over message and high score
-    const gameOverText = this.add.text(config.width / 2, config.height / 2 + 250, 'Game Over', { fontSize: '200px', fill: '#fff' })
+    const gameOverText = this.add.text(config.width / 2, config.height / 2 + 300, 'Game Over', { fontSize: '200px', fill: '#fff' })
         .setOrigin(0.5)
         .setShadow(2, 2, 'rgba(0,0,0,1)', 2);
 
