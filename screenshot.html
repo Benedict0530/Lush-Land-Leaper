@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('sky1.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        nav {
+            background-color: transparent;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            animation: pulseBrightness 0.5s infinite alternate; /* Adjust the duration as needed */
+        }
+
+        h1 img {
+            width: 200px; /* Adjust the width as needed */
+            height: auto;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        #picture-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .picture {
+            margin: 10px;
+        }
+
+        @keyframes pulseBrightness {
+            0% {
+                filter: brightness(1);
+            }
+            100% {
+                filter: brightness(1.2); /* Adjust the brightness value as needed */
+            }
+        }
+    </style>
+</head>
+
+<body>
+<nav>
+    <h1><img src="nav.png" alt="Mig8 LushLand Leaper Nav"></h1>
+</nav>
+
+<div id="picture-container">
+    <div class="picture">
+        <img src="info1.png" alt="Picture 1">
+    </div>
+    <div class="picture">
+        <img src="info2.png" alt="Picture 2">
+    </div>
+    <div class="picture">
+        <img src="info3.png" alt="Picture 3">
+    </div>
+    <div class="picture">
+        <img src="splash1.png" alt="Picture 4">
+    </div>
+
+</div>
+</body>
+
+</html>
