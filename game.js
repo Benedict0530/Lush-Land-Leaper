@@ -87,7 +87,7 @@ function create() {
     
 
     // Display player HP text at the top left with a black shadow
-    playerHPText = this.add.text(150, 100, 'HP: 100', { fontSize: '32px', fill: '#fff' })
+    playerHPText = this.add.text(150, 100, 'HP: 100', { fontSize: '62px', fill: '#fff' })
      .setScrollFactor(0)
      .setShadow(2, 2, 'rgba(0,0,0,1)', 2); // Add black shadow
 
@@ -98,6 +98,7 @@ function create() {
     player.setSize(40, 100);
     player.setBounce(0);
     player.setCollideWorldBounds(true);
+    player.setScale(2);
 
     this.physics.world.on('worldbounds', function (body) {
         if (body.gameObject === player) {
@@ -209,14 +210,14 @@ function gameOver() {
 
 
   // Create onscreen buttons
-    leftButton = this.add.sprite(100, config.height - 100, 'leftButton').setInteractive();
+    leftButton = this.add.sprite(200, config.height - 100, 'leftButton').setInteractive();
     rightButton = this.add.sprite(200, config.height - 100, 'rightButton').setInteractive();
     jumpButton = this.add.sprite(config.width - 100, config.height - 100, 'jumpButton').setInteractive();
 
     // Scale the buttons and set their alpha to make them semi-transparent
-    leftButton.setScale(1).setAlpha(1);
-    rightButton.setScale(1).setAlpha(1);
-    jumpButton.setScale(1).setAlpha(1);
+    leftButton.setScale(2).setAlpha(1);
+    rightButton.setScale(2).setAlpha(1);
+    jumpButton.setScale(2).setAlpha(1);
 
 
 
@@ -254,8 +255,8 @@ function gameOver() {
 
 function update() {
 
-leftButton.x = this.cameras.main.worldView.left + 50;
-rightButton.x = this.cameras.main.worldView.left + 150;
+leftButton.x = this.cameras.main.worldView.left + 150;
+rightButton.x = this.cameras.main.worldView.left + 400;
 jumpButton.x = this.cameras.main.worldView.right - 150;
 
 
@@ -266,11 +267,11 @@ jumpButton.y = this.cameras.main.worldView.bottom - 100;
 
 
     if (cursors.left.isDown) {
-        player.setVelocityX(-160);
+        player.setVelocityX(-250);
         player.flipX = true;
         player.body.onFloor() ? player.anims.play('left', true) : null;
     } else if (cursors.right.isDown) {
-        player.setVelocityX(160);
+        player.setVelocityX(250);
         player.flipX = false;
         player.body.onFloor() ? player.anims.play('right', true) : null;
     } else {
@@ -279,7 +280,7 @@ jumpButton.y = this.cameras.main.worldView.bottom - 100;
     }
 
     if (cursors.up.isDown && player.body.onFloor()) {
-        player.setVelocityY(-500);
+        player.setVelocityY(-800);
         player.anims.play('jump', true);
     }
 
@@ -300,7 +301,7 @@ jumpButton.y = this.cameras.main.worldView.bottom - 100;
     });
 
     // Adjusting gravity based on whether the player is on the floor or in the air
-    player.body.velocity.y > 0 ? player.body.gravity.y = 10000 : player.body.gravity.y = 250;
+    player.body.velocity.y > 0 ? player.body.gravity.y = 10000 : player.body.gravity.y = 300;
 }
 
 
@@ -320,6 +321,7 @@ function respawnEnemy() {
     const newEnemy = enemies.create(startX, startY, 'enemy');
     newEnemy.setSize(40, 0); // Set size based on your sprite dimensions
     newEnemy.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    newEnemy.setScale(2)
     newEnemy.setCollideWorldBounds(true);
 
     // Flip the enemy horizontally if it's moving from right to left
