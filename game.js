@@ -1,7 +1,7 @@
 const config = {
     type: Phaser.AUTO,
-    width: 2080,
-    height: 960,
+    width: 2100,
+    height: 950,
     scale: {
         mode: Phaser.Scale.FIT,
         parent: 'phaser-example',
@@ -42,10 +42,10 @@ let highScore = 0;
 const game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('sky', 'sky.png');
-    this.load.spritesheet('dude', 'dude.png', { frameWidth: 198.8, frameHeight: 138 });
-    this.load.spritesheet('jumpdude', 'jumpdude.png', { frameWidth: 198.8, frameHeight: 138 });
-    this.load.spritesheet('idledude', 'idledude.png', { frameWidth: 198.9, frameHeight: 138 });
+    this.load.image('sky', 'sky3.png');
+    this.load.spritesheet('dude', 'dude1.png', { frameWidth: 180.5, frameHeight: 138 });
+    this.load.spritesheet('jumpdude', 'jumpdude2.png', { frameWidth: 175, frameHeight: 138 });
+    this.load.spritesheet('idledude', 'idledude3.png', { frameWidth: 175, frameHeight: 138 });
     
     
     this.load.spritesheet('enemy', 'enemysprite.png', { frameWidth: 51.4, frameHeight: 50 }); // Adjust frameWidth and frameHeight
@@ -98,7 +98,7 @@ function create() {
     player.setSize(40, 100);
     player.setBounce(0);
     player.setCollideWorldBounds(true);
-    player.setScale(2);
+    player.setScale(1.3);
 
     this.physics.world.on('worldbounds', function (body) {
         if (body.gameObject === player) {
@@ -215,9 +215,9 @@ function gameOver() {
     jumpButton = this.add.sprite(config.width - 100, config.height - 100, 'jumpButton').setInteractive();
 
     // Scale the buttons and set their alpha to make them semi-transparent
-    leftButton.setScale(2).setAlpha(1);
-    rightButton.setScale(2).setAlpha(1);
-    jumpButton.setScale(2).setAlpha(1);
+    leftButton.setScale(1.5).setAlpha(1);
+    rightButton.setScale(1.5).setAlpha(1);
+    jumpButton.setScale(1.5).setAlpha(1);
 
 
 
@@ -321,7 +321,7 @@ function respawnEnemy() {
     const newEnemy = enemies.create(startX, startY, 'enemy');
     newEnemy.setSize(40, 0); // Set size based on your sprite dimensions
     newEnemy.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    newEnemy.setScale(2)
+    newEnemy.setScale(1.5)
     newEnemy.setCollideWorldBounds(true);
 
     // Flip the enemy horizontally if it's moving from right to left
@@ -344,7 +344,7 @@ function createAnimations() {
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
-        frameRate: 10,
+        frameRate: 8,
         repeat: -1
     });
 
@@ -357,7 +357,7 @@ function createAnimations() {
     this.anims.create({
         key: 'right',
         frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 7 }),
-        frameRate: 10,
+        frameRate: 8,
         repeat: -1
     });
 
