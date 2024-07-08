@@ -42,7 +42,7 @@ let highScore = 0;
 const game = new Phaser.Game(config);
 
 function preload() {
-//    sendAnalytics('startGame', null);
+    sendAnalytics('startGame', null);
     this.load.image('sky', 'sky3.png');
     this.load.spritesheet('dude', 'dude1.png', { frameWidth: 180.5, frameHeight: 138 });
     this.load.spritesheet('jumpdude', 'jumpdude2.png', { frameWidth: 175, frameHeight: 138 });
@@ -152,13 +152,47 @@ function create() {
                // Increase player score and update the score text
                       playerScore += 10; // Adjust the score based on your preference
 
-                       this.sound.play('points');
+
+           // Calculate a random X position within the camera's visible area
+                   const cameraLeft = this.cameras.main.worldView.left;
+                   const cameraRight = this.cameras.main.worldView.right;
+                   const randomX = Phaser.Math.Between(cameraLeft + 350, cameraRight - 350);
+
+                   // Display "+10" message at the random X position with a fixed Y level
+                   const pointsText = this.add.text(randomX, 450, '+ 10', {
+                       fontSize: '50px',
+                       fill: '#FFDC5E'
+                   })
+                   .setOrigin(0.5)
+                   .setScrollFactor(0)
+                   .setShadow(2, 2, 'rgba(0,0,0,1)', 2); // Add white shadow
+
+                   this.time.delayedCall(500, () => {
+                       pointsText.destroy();
+                   });
+
               return;
           }
           enemy.destroy();
 
           // Otherwise, decrease player HP and update the HP text
           playerHP -= 10; // Adjust the amount based on your preference
+
+           const cameraLeft = this.cameras.main.worldView.left;
+           const cameraRight = this.cameras.main.worldView.right;
+           const randomX = Phaser.Math.Between(cameraLeft + 350, cameraRight - 350);
+
+           const pointsText = this.add.text(randomX, 450, '- 10', {
+               fontSize: '50px',
+               fill: '#F23C34'
+           })
+           .setOrigin(0.5)
+           .setScrollFactor(0)
+           .setShadow(2, 2, 'rgba(0,0,0,1)', 2); // Add white shadow
+
+           this.time.delayedCall(500, () => {
+               pointsText.destroy();
+           });
           this.sound.play('hit');
           playerHP = Phaser.Math.Clamp(playerHP, 0, 100); // Ensure player HP stays between 0 and 100
 
@@ -180,7 +214,7 @@ if (storedHighScore) {
 
 function gameOver() {
 
-//    sendAnalytics('complete a game', null);
+    sendAnalytics('complete a game', null);
     isGameOver = true;
     this.sound.stopByKey('backgroundMusic');
 
@@ -271,7 +305,7 @@ function gameOver() {
     const challengeText = this.add.text(config.width / 2, 250, 'Challenge? You can only use one button at a time. Enjoy!', {
         fontSize: '50px',
         fill: '#fff',
-        backgroundColor: '#000'
+        backgroundColor: '#F23C34'
     }).setOrigin(0.5).setScrollFactor(0);
 
     this.time.delayedCall(10000, () => {
@@ -403,11 +437,11 @@ function createAnimations() {
 
     player.anims.play('idle');
 }
-// function sendAnalytics(eventName, eventData) {
-//     if (eventName == null) {
-//         return;
-//     } else {
-//         window.jsBridge.postMessage(eventName, JSON.stringify(eventData)); // Pass eventData as a JSON string
-//         console.log('Event Tracked: ' + eventName);
-//     }
-// }
+ function sendAnalytics(eventName, eventData) {
+     if (eventName == null) {
+         return;
+     } else {
+         window.jsBridge.postMessage(eventName, JSON.stringify(eventData)); // Pass eventData as a JSON string
+         console.log('Event Tracked: ' + eventName);
+     }
+ }
