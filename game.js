@@ -151,7 +151,7 @@ function create() {
               enemy.destroy();
                // Increase player score and update the score text
                       playerScore += 10; // Adjust the score based on your preference
-
+                        this.sound.play('points');
 
            // Calculate a random X position within the camera's visible area
                    const cameraLeft = this.cameras.main.worldView.left;
