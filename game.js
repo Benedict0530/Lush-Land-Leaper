@@ -53,6 +53,7 @@ function preload() {
     this.load.image('rightButton', 'rightButton.png');
     this.load.image('jumpButton', 'jumpButton.png');
 
+     this.load.audio('backgroundMusic', 'background.mp3');
      this.load.audio('points', 'points.mp3');
      this.load.audio('hit', 'hit.mp3');
      this.load.audio('end', 'end.mp3');
@@ -63,6 +64,7 @@ function preload() {
 }
 
 function create() {
+
  
      let bg = this.add.tileSprite(0, 0, config.width, config.height, 'sky').setOrigin(0, 0);
  
@@ -74,7 +76,10 @@ function create() {
          bg.setSize(gameSize.width, gameSize.height);
          bg.setScale(gameSize.width / bg.width, gameSize.height / bg.height);
      }, this);
- 
+
+         // Play background music
+            const backgroundMusic = this.sound.add('backgroundMusic', { loop: true });
+            backgroundMusic.play();
     
     
 
@@ -174,6 +179,7 @@ if (storedHighScore) {
 
 function gameOver() {
     isGameOver = true;
+    this.sound.stopByKey('backgroundMusic');
 
     // Update high score if the current score is higher
   // Update high score if the current score is higher
