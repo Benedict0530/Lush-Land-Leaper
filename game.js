@@ -53,6 +53,9 @@ function preload() {
     this.load.image('rightButton', 'rightButton.png');
     this.load.image('jumpButton', 'jumpButton.png');
 
+     this.load.audio('points', 'points.mp3');
+     this.load.audio('hit', 'hit.mp3');
+     this.load.audio('end', 'end.mp3');
 
     this.load.on('complete', function () {
         document.getElementById('preloader').style.display = 'none';
@@ -143,12 +146,14 @@ function create() {
                // Increase player score and update the score text
                       playerScore += 10; // Adjust the score based on your preference
 
+                       this.sound.play('points');
               return;
           }
           enemy.destroy();
 
           // Otherwise, decrease player HP and update the HP text
           playerHP -= 10; // Adjust the amount based on your preference
+          this.sound.play('hit');
           playerHP = Phaser.Math.Clamp(playerHP, 0, 100); // Ensure player HP stays between 0 and 100
 
           playerHPText.setText('HP: ' + playerHP);
@@ -156,6 +161,7 @@ function create() {
           // Additional actions based on player HP, e.g., player death
        if (playerHP === 0) {
               gameOver.call(this); // Call the game over function
+               this.sound.play('end');
               return;
           }
       }
