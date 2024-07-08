@@ -47,8 +47,8 @@ function preload() {
     this.load.spritesheet('dude', 'dude1.png', { frameWidth: 180.5, frameHeight: 138 });
     this.load.spritesheet('jumpdude', 'jumpdude2.png', { frameWidth: 175, frameHeight: 138 });
     this.load.spritesheet('idledude', 'idledude3.png', { frameWidth: 175, frameHeight: 138 });
-    
-    
+
+
     this.load.spritesheet('enemy', 'enemysprite.png', { frameWidth: 51.4, frameHeight: 50 }); // Adjust frameWidth and frameHeight
     this.load.image('leftButton', 'leftButton.png');
     this.load.image('rightButton', 'rightButton.png');
@@ -66,12 +66,12 @@ function preload() {
 
 function create() {
 
- 
+
      let bg = this.add.tileSprite(0, 0, config.width, config.height, 'sky').setOrigin(0, 0);
- 
+
      // Calculate the initial scale to cover the entire screen
      bg.setScale(config.width / bg.width, config.height / bg.height);
- 
+
      // Ensure the background scales correctly when the game is resized
      this.scale.on('resize', function(gameSize) {
          bg.setSize(gameSize.width, gameSize.height);
@@ -81,8 +81,8 @@ function create() {
          // Play background music
             const backgroundMusic = this.sound.add('backgroundMusic', { loop: true });
             backgroundMusic.play();
-    
-    
+
+
 
     // Camera adjustment
     this.cameras.main.setBounds(0, 0, config.width, config.height);
@@ -92,8 +92,8 @@ function create() {
     this.physics.world.setBounds(0, 0, config.width, config.height);
 
 
-    
-    
+
+
 
     // Display player HP text at the top left with a black shadow
     playerHPText = this.add.text(150, 100, 'HP: 100', { fontSize: '62px', fill: '#fff' })
@@ -178,11 +178,7 @@ function create() {
           // Otherwise, decrease player HP and update the HP text
           playerHP -= 10; // Adjust the amount based on your preference
 
-           const cameraLeft = this.cameras.main.worldView.left;
-           const cameraRight = this.cameras.main.worldView.right;
-           const randomX = Phaser.Math.Between(cameraLeft + 350, cameraRight - 350);
-
-           const pointsText = this.add.text(randomX, 450, '- 10', {
+           const pointsText = this.add.text(450, 132, '- 10', {
                fontSize: '50px',
                fill: '#F23C34'
            })
