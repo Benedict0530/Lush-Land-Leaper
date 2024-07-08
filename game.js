@@ -42,7 +42,7 @@ let highScore = 0;
 const game = new Phaser.Game(config);
 
 function preload() {
-    sendAnalytics('startGame', null);
+//    sendAnalytics('startGame', null);
     this.load.image('sky', 'sky3.png');
     this.load.spritesheet('dude', 'dude1.png', { frameWidth: 180.5, frameHeight: 138 });
     this.load.spritesheet('jumpdude', 'jumpdude2.png', { frameWidth: 175, frameHeight: 138 });
@@ -180,7 +180,7 @@ if (storedHighScore) {
 
 function gameOver() {
 
-    sendAnalytics('complete a game', null);
+//    sendAnalytics('complete a game', null);
     isGameOver = true;
     this.sound.stopByKey('backgroundMusic');
 
@@ -266,6 +266,17 @@ function gameOver() {
         jumpButton.on('pointerout', function () {
             cursors.up.isDown = false;
         });
+
+ // Display challenge message and set a timer to remove it after 10 seconds
+    const challengeText = this.add.text(config.width / 2, 250, 'Challenge? You can only use one button at a time. Enjoy!', {
+        fontSize: '50px',
+        fill: '#fff',
+        backgroundColor: '#000'
+    }).setOrigin(0.5).setScrollFactor(0);
+
+    this.time.delayedCall(10000, () => {
+        challengeText.destroy();
+    });
 }
 
 function update() {
@@ -392,11 +403,11 @@ function createAnimations() {
 
     player.anims.play('idle');
 }
- function sendAnalytics(eventName, eventData) {
-     if (eventName == null) {
-         return;
-     } else {
-         window.jsBridge.postMessage(eventName, JSON.stringify(eventData)); // Pass eventData as a JSON string
-         console.log('Event Tracked: ' + eventName);
-     }
- }
+// function sendAnalytics(eventName, eventData) {
+//     if (eventName == null) {
+//         return;
+//     } else {
+//         window.jsBridge.postMessage(eventName, JSON.stringify(eventData)); // Pass eventData as a JSON string
+//         console.log('Event Tracked: ' + eventName);
+//     }
+// }
